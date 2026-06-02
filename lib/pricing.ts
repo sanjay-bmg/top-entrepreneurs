@@ -1,16 +1,9 @@
 // Placeholder pricing — edit these three numbers and they propagate to the
 // landing page, how-it-works, the live apply estimate, and the email quote.
 export const PRICING = {
-  primaryIndustry: 199, // first industry ($/yr, per city)
-  additionalIndustry: 59, // each additional industry ($/yr, per city)
-  featuredCity: 499, // Featured listing — the single top spot ($/yr, one per city)
-} as const;
-
-// Struck-through "anchor" prices shown on the landing page (display only).
-export const ANCHOR_PRICING = {
-  primaryIndustry: 399,
-  additionalIndustry: 100,
-  featuredCity: 999,
+  primaryIndustry: 289, // first industry ($/yr, per city)
+  additionalIndustry: 89, // each additional industry ($/yr, per city)
+  featuredCity: 689, // Featured listing — the single top spot ($/yr, one per city)
 } as const;
 
 export interface QuoteInput {

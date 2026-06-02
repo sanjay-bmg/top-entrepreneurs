@@ -12,7 +12,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What does a listing cost?",
     answer:
-      "$199 for your first industry and $59 for each additional industry, per city. The Featured listing — the single top spot in your city — is $499 per year, and only one business per city can hold it. Pricing is for the annual listing.",
+      "$289 for your first industry and $89 for each additional industry, per city. The Featured listing — the single top spot in your city — is $689 per year, and only one business per city can hold it. Pricing is for the annual listing.",
   },
   {
     question: "What is the Featured listing?",

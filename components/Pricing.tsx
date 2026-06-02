@@ -3,7 +3,7 @@ import Button from "./Button";
 import Container from "./Container";
 import FadeIn from "./FadeIn";
 import { LaurelLeft, LaurelRight } from "./LaurelWreath";
-import { PRICING, ANCHOR_PRICING, formatCurrency } from "@/lib/pricing";
+import { PRICING, formatCurrency } from "@/lib/pricing";
 import { siteConfig } from "@/site.config";
 
 const LISTING_FEATURES = [
@@ -66,7 +66,7 @@ export default function Pricing() {
                     <p className="text-xs text-muted mt-0.5">Your primary listing category, per city</p>
                   </div>
                   <span className="font-display text-2xl font-bold text-navy">
-                    <span className="mr-2 text-base font-normal text-muted/60 line-through">{formatCurrency(ANCHOR_PRICING.primaryIndustry)}</span>
+                    <span className="mr-2 text-base font-normal text-muted/60 line-through">{formatCurrency(PRICING.primaryIndustry * 2)}</span>
                     {formatCurrency(PRICING.primaryIndustry)}
                     <span className="text-sm font-normal text-muted">/yr</span>
                   </span>
@@ -77,7 +77,7 @@ export default function Pricing() {
                     <p className="text-xs text-muted mt-0.5">Expand to every category you serve</p>
                   </div>
                   <span className="font-display text-2xl font-bold text-navy">
-                    <span className="mr-2 text-base font-normal text-muted/60 line-through">{formatCurrency(ANCHOR_PRICING.additionalIndustry)}</span>
+                    <span className="mr-2 text-base font-normal text-muted/60 line-through">{formatCurrency(PRICING.additionalIndustry * 2)}</span>
                     {formatCurrency(PRICING.additionalIndustry)}
                     <span className="text-sm font-normal text-muted">/yr</span>
                   </span>
@@ -123,7 +123,7 @@ export default function Pricing() {
 
               <div className="flex items-baseline gap-2 mb-6">
                 <span className="font-display text-2xl font-normal text-white/40 line-through">
-                  {formatCurrency(ANCHOR_PRICING.featuredCity)}
+                  {formatCurrency(PRICING.featuredCity * 2)}
                 </span>
                 <span className="font-display text-4xl font-bold text-gold">
                   {formatCurrency(PRICING.featuredCity)}

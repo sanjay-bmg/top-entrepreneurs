@@ -430,7 +430,7 @@ export default function ApplyForm() {
               Industries <span className="text-red-500">*</span>
             </p>
             <p className="text-sm text-muted">
-              Select every category your business fits. Your first industry is $199/yr per city; each additional is $59/yr per city.
+              Select every category your business fits. Your first industry is $289/yr per city; each additional is $89/yr per city.
             </p>
             <Controller
               name="industries"
@@ -479,7 +479,7 @@ export default function ApplyForm() {
                     Recommended
                   </span>
                 </div>
-                <p className="text-gold font-bold text-base mt-0.5">+$499 per city — only one business per city</p>
+                <p className="text-gold font-bold text-base mt-0.5">+$689 per city — only one business per city</p>
                 <p className="text-sm text-muted mt-2 leading-relaxed">
                   Claim the single top spot in your city before someone else does. Your business appears above every other listing — with a <strong className="text-navy">Featured</strong> badge. There is only one Featured spot per city, sold on a first-come basis.
                 </p>
