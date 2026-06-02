@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  /* Colors — Charcoal & Emerald.
+     Token names are role-based: "navy" = primary dark, "gold" = accent.
+     Keeping the names lets every component reskin via these values alone. */
+  --color-navy: #15181D;        /* charcoal — primary brand, headers, dark sections */
+  --color-navy-light: #232831;  /* lighter charcoal — trust strips, panels */
+  --color-navy-dark: #0E1014;   /* darkest charcoal — footer, banner */
+  --color-gold: #1F7A5A;        /* emerald — accent, CTAs, highlights */
+  --color-gold-light: #2E9B72;  /* emerald hover */
+  --color-gold-dark: #15604A;   /* emerald active/pressed */
+  --color-cream: #F5F6F4;       /* soft off-white backgrounds */
+  --color-cream-dark: #E7E6E0;  /* card borders, dividers, input backgrounds */
+  --color-dark: #1A1C20;        /* default body text (not pure black) */
+  --color-muted: #5C636E;       /* body copy, secondary text, captions */
+
+  /* Typography */
+  --font-display: var(--lora), Georgia, "Times New Roman", serif;
+  --font-sans: var(--inter), system-ui, -apple-system, sans-serif;
+
+  /* Border radius */
+  --radius-2xl: 1rem;
+}
+
+/* Base resets */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply font-sans text-dark bg-white antialiased;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid theme(--color-gold);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
