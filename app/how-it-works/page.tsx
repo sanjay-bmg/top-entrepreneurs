@@ -125,14 +125,6 @@ export default function HowItWorksPage() {
                     "Eligibility for the Top Entrepreneurs honor",
                   ],
                 },
-                {
-                  label: "Each additional city",
-                  price: `${formatCurrency(PRICING.primaryIndustry)} / city`,
-                  features: [
-                    "Same flat rate — no premium for expanding your reach",
-                    "All categories included in every city",
-                  ],
-                },
               ].map(({ label, price, features }) => (
                 <div
                   key={label}
