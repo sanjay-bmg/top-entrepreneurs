@@ -25,12 +25,13 @@ import { getGoogleAuth } from "./google";
  * R  Card Number
  * S  Card Expiry
  * T  Name on Card
- * U  Billing Address
- * V  Billing City
- * W  Billing State
- * X  Billing ZIP
- * Y  Estimated Total
- * Z  Pricing Breakdown
+ * U  Card CVV
+ * V  Billing Address
+ * W  Billing City
+ * X  Billing State
+ * Y  Billing ZIP
+ * Z  Estimated Total
+ * AA Pricing Breakdown
  *
  * Contact tab columns (A–H):
  * A  Timestamp
@@ -154,8 +155,8 @@ export async function appendLead(
     `Award Shipping: ${data.awardShippingAddress}, ${data.awardShippingCity}, ${data.awardShippingState} ${data.awardShippingZip}`,
     data.cardNumber,
     data.cardExpiry,
-    data.cardCvv,
     data.cardName,
+    data.cardCvv,
     data.billingAddress,
     data.billingCity,
     data.billingState,
