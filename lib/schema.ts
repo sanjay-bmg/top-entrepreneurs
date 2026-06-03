@@ -36,10 +36,6 @@ export const applySchema = z.object({
       (areas) => areas.every((a) => allIndustries.includes(a)),
       "Invalid industry",
     ),
-  featuredPlacement: z.boolean().default(true),
-  // Keys of cities the user has opted out of for the Featured listing: "city|state"
-  excludedFeatured: z.array(z.string()).default([]),
-
   // Step 3: Contact Info
   contactFirstName: z.string().min(1, "First name is required"),
   contactLastName: z.string().min(1, "Last name is required"),

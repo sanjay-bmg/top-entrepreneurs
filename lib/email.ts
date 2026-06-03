@@ -40,45 +40,18 @@ export async function sendLeadEmail(
   const quote = calculateQuote({
     industries: data.industries,
     cities: data.locations,
-    featured: data.featuredPlacement,
-    excludedFeatured: data.excludedFeatured ?? [],
   });
 
   const cityCount = Math.max(1, data.locations.length);
   const industryCount = data.industries.length;
-  const excludedFeatured = data.excludedFeatured ?? [];
 
-  const listingSubtotal = quote.lineItems
-    .filter((li) => !li.label.startsWith("Featured listing"))
-    .reduce((s, li) => s + li.amount, 0);
-  const featuredSubtotal = quote.lineItems
-    .filter((li) => li.label.startsWith("Featured listing"))
-    .reduce((s, li) => s + li.amount, 0);
-
-  // Per-industry listing detail
   const industryLines: string[] = [];
   data.industries.forEach((area, i) => {
     const rate = i === 0 ? PRICING.primaryIndustry : PRICING.additionalIndustry;
     const label = i === 0 ? "Primary industry " : "Additional industry";
-    industryLines.push(
-      `  ${label}: ${area.padEnd(34)} ${formatCurrency(rate)} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"} = ${formatCurrency(rate * cityCount)}`
-    );
+    const amountStr = rate === 0 ? "Free" : formatCurrency(rate * cityCount);
+    industryLines.push(`  ${label}: ${area.padEnd(34)} ${amountStr}`);
   });
-
-  // Per-city featured detail (one slot per city)
-  const featuredLines: string[] = [];
-  if (data.featuredPlacement) {
-    for (const loc of data.locations) {
-      const key = `${loc.city}|${loc.state}`;
-      if (!excludedFeatured.includes(key)) {
-        featuredLines.push(`  ${loc.city}, ${loc.state}: ${formatCurrency(PRICING.featuredCity)}`);
-      }
-    }
-    for (const key of excludedFeatured) {
-      const [city, state] = key.split("|");
-      featuredLines.push(`  ${city}, ${state}: [opted out]`);
-    }
-  }
 
   const ownersText =
     data.owners && data.owners.length > 0
@@ -105,9 +78,8 @@ Cities:        ${data.locations.map(l => `${l.city}, ${l.state}`).join(" | ")}
 Owners Listed: ${ownersText}
 Assets:        ${data.assetPermission === "grant" ? "Permission granted to use website assets" : "Support team to contact for assets"}
 
-INDUSTRIES
-${data.industries.map((a, i) => `  ${i === 0 ? "(Primary)   " : "(Additional)"} ${a}`).join("\n")}
-Featured Listing: ${data.featuredPlacement ? "Yes" : "No"}
+INDUSTRIES (${industryCount} ${industryCount > 1 ? "industries" : "industry"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"})
+${industryLines.join("\n")}
 
 CONTACT
 Name:   ${data.contactFirstName} ${data.contactLastName}${data.contactTitle ? ` (${data.contactTitle})` : ""}
@@ -116,19 +88,9 @@ Phone:  ${data.contactPhone}
 
 ITEMIZED QUOTE
 ${divider}
-LISTING FEES (${industryCount} ${industryCount > 1 ? "industries" : "industry"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"})
-${industryLines.join("\n")}
-Listing subtotal:                                    ${formatCurrency(listingSubtotal)}
-${data.featuredPlacement && featuredLines.length > 0 ? `
-FEATURED LISTING (one per city)
-${featuredLines.join("\n")}
-Featured subtotal:                                   ${formatCurrency(featuredSubtotal)}
-` : data.featuredPlacement ? `
-FEATURED LISTING: None selected
-` : `
-FEATURED LISTING: Not selected
-`}${divider}
-TOTAL:                                               ${formatCurrency(quote.total)}
+${quote.lineItems.map(li => `${li.label}: ${li.amount === 0 ? "Free" : formatCurrency(li.amount)}`).join("\n")}
+${divider}
+TOTAL:  ${formatCurrency(quote.total)}
 ${divider}
 
 NOTES

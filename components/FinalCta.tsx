@@ -21,8 +21,7 @@ export default function FinalCta() {
           <div className="w-12 h-0.5 bg-gold/40 mx-auto mb-8" />
           <p className="text-white/70 text-xl leading-relaxed mb-10">
             Join the nation&apos;s directory of top entrepreneurs. Tell us about
-            your business today — and claim your city&apos;s Featured spot before
-            someone else does.
+            your business today and earn the recognition you deserve.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button href="/apply" variant="primary" size="lg">

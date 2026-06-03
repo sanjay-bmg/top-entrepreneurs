@@ -65,7 +65,7 @@ export default function AboutPage() {
                 {
                   icon: Globe,
                   heading: "Our Reach",
-                  body: "All 50 states. 18 industries. One Featured spot per city — and a coordinated 2027 launch.",
+                  body: "All 50 states. 18 industries. A coordinated 2027 national launch.",
                 },
               ].map(({ icon: Icon, heading, body }) => (
                 <div key={heading} className="text-center p-6 rounded-xl border border-cream-dark">

@@ -1,4 +1,4 @@
-import { Building2, Crown, Trophy, Users } from "lucide-react";
+import { Building2, Tag, Trophy, Users } from "lucide-react";
 import Container from "./Container";
 import FadeIn from "./FadeIn";
 
@@ -9,9 +9,9 @@ const props = [
     body: "Apply to be listed by your city and industry. Every qualifying founder and business owner is accepted.",
   },
   {
-    icon: Crown,
-    heading: "Claim Your City.",
-    body: "Only one Featured listing exists per city — the single top spot above every other business. First come, first served.",
+    icon: Tag,
+    heading: "Add Industries.",
+    body: "List your business in every industry you serve — at no extra cost. Reach every customer looking for what you do.",
   },
   {
     icon: Trophy,

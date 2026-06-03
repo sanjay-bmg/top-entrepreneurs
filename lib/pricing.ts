@@ -2,16 +2,12 @@
 // landing page, how-it-works, the live apply estimate, and the email quote.
 export const PRICING = {
   primaryIndustry: 289, // first industry ($/yr, per city)
-  additionalIndustry: 89, // each additional industry ($/yr, per city)
-  featuredCity: 689, // Featured listing — the single top spot ($/yr, one per city)
+  additionalIndustry: 0, // each additional industry — included free
 } as const;
 
 export interface QuoteInput {
   industries: string[];
   cities: { city: string; state: string }[];
-  featured: boolean;
-  // "city|state" keys the user has opted out of for the Featured listing
-  excludedFeatured: string[];
 }
 
 export interface QuoteLineItem {
@@ -24,7 +20,7 @@ export interface Quote {
   total: number;
 }
 
-export function calculateQuote({ industries, cities, featured, excludedFeatured }: QuoteInput): Quote {
+export function calculateQuote({ industries, cities }: QuoteInput): Quote {
   const lineItems: QuoteLineItem[] = [];
   const industryCount = industries.length;
   const cityCount = Math.max(1, cities.length);
@@ -39,22 +35,9 @@ export function calculateQuote({ industries, cities, featured, excludedFeatured 
   if (industryCount > 1) {
     const additionalCount = industryCount - 1;
     lineItems.push({
-      label: `${additionalCount} additional ${additionalCount > 1 ? "industries" : "industry"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"}`,
-      amount: additionalCount * PRICING.additionalIndustry * cityCount,
+      label: `${additionalCount} additional ${additionalCount > 1 ? "industries" : "industry"} — included free`,
+      amount: 0,
     });
-  }
-
-  if (featured) {
-    // One Featured listing per city — count cities not opted out
-    const includedCities = cities.filter(
-      (loc) => !excludedFeatured.includes(`${loc.city}|${loc.state}`),
-    ).length;
-    if (includedCities > 0) {
-      lineItems.push({
-        label: `Featured listing × ${includedCities} cit${includedCities > 1 ? "ies" : "y"}`,
-        amount: PRICING.featuredCity * includedCities,
-      });
-    }
   }
 
   const total = lineItems.reduce((sum, item) => sum + item.amount, 0);

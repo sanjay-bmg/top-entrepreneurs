@@ -47,7 +47,6 @@ import { getGoogleAuth } from "./google";
  * A  State   B  City   C  Status ("active")   D  Business Name   E  Timestamp
  */
 
-const FEATURED_TAB = "Featured-City";
 
 async function getSheets() {
   const auth = getGoogleAuth(["https://www.googleapis.com/auth/spreadsheets"]);
@@ -124,8 +123,6 @@ export async function appendLead(
   const quote = calculateQuote({
     industries: data.industries,
     cities: data.locations,
-    featured: data.featuredPlacement,
-    excludedFeatured: data.excludedFeatured ?? [],
   });
 
   const pricingBreakdown = [
@@ -149,7 +146,6 @@ export async function appendLead(
     data.assetPermission === "grant" ? "Permission granted" : "Support team to contact",
     data.locations.map(l => `${l.city}, ${l.state}`).join("; "),
     data.industries.join(", "),
-    data.featuredPlacement ? "Yes" : "No",
     data.contactFirstName,
     data.contactLastName,
     data.email,
@@ -170,29 +166,6 @@ export async function appendLead(
 
   await insertRowAt2(sheets, sheetId, "Applications", tabId, row);
 
-  // Write Featured inventory rows (one per included city — one Featured slot per city)
-  if (data.featuredPlacement && data.locations.length > 0) {
-    const excluded = data.excludedFeatured ?? [];
-    const inventoryRows: string[][] = [];
-    for (const loc of data.locations) {
-      if (!excluded.includes(`${loc.city}|${loc.state}`)) {
-        inventoryRows.push([loc.state, loc.city, "active", data.businessName, new Date().toISOString()]);
-      }
-    }
-    if (inventoryRows.length > 0) {
-      try {
-        await sheets.spreadsheets.values.append({
-          spreadsheetId: sheetId,
-          range: `${FEATURED_TAB}!A:E`,
-          valueInputOption: "USER_ENTERED",
-          requestBody: { values: inventoryRows },
-        });
-      } catch (e) {
-        // Log but don't fail the submission — lead is already recorded
-        console.error(`[sheets] Could not write ${FEATURED_TAB} rows:`, e);
-      }
-    }
-  }
 }
 
 export async function appendContact(

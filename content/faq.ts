@@ -12,17 +12,12 @@ export const faqItems: FaqItem[] = [
   {
     question: "What does a listing cost?",
     answer:
-      "$289 for your first industry and $89 for each additional industry, per city. The Featured listing — the single top spot in your city — is $689 per year, and only one business per city can hold it. Pricing is for the annual listing.",
-  },
-  {
-    question: "What is the Featured listing?",
-    answer:
-      "Each city has exactly one Featured listing: the premium spot at the very top of the city page, above every other business. Only one entrepreneur per city can hold it, and availability is first-come, first-served. Once your city's spot is claimed, it's gone for the year.",
+      "$289 per city for your first industry. Additional industries are included free — add every category your business serves at no extra cost. Pricing is for the annual listing.",
   },
   {
     question: "When does my listing go live?",
     answer:
-      "All listings debut together at the 2027 directory launch — a coordinated national reveal. Apply now to secure your city before the Featured spot is taken.",
+      "All listings debut together at the 2027 directory launch — a coordinated national reveal.",
   },
   {
     question: "Do I receive an award?",
@@ -37,7 +32,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How are businesses ranked?",
     answer:
-      "Within each city and industry, businesses are ordered by verified client review rating. The Featured listing takes the top position on the city page, above all ranked businesses.",
+      "Within each city and industry, businesses are ordered by verified client review rating.",
   },
   {
     question: "Can I cancel my listing?",
@@ -48,7 +43,7 @@ export const faqItems: FaqItem[] = [
 
 export const howItWorksFaqItems: FaqItem[] = [
   faqItems[0],
-  faqItems[3],
+  faqItems[2],
+  faqItems[4],
   faqItems[5],
-  faqItems[6],
 ];

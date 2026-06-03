@@ -91,20 +91,6 @@ export default function Hero() {
                   </div>
                 </div>
 
-                {/* Floating stat card */}
-                <div className="absolute -left-8 bottom-32 z-30 rounded-xl border border-white/10 bg-navy/90 backdrop-blur-md p-4 shadow-xl pointer-events-none hidden sm:flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gold/20 border border-gold/40">
-                    <Star className="h-5 w-5 text-gold fill-gold" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gold uppercase tracking-widest font-semibold mb-0.5">
-                      City Exclusive
-                    </p>
-                    <p className="text-sm font-medium text-white">
-                      One Featured Spot Per City
-                    </p>
-                  </div>
-                </div>
               </div>
             </div>
           </FadeIn>

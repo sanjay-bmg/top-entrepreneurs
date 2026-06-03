@@ -27,7 +27,6 @@ export default function TermsPage() {
             <ul>
               <li>Listings are sold on an annual basis and are scheduled to debut with the coordinated directory launch in 2027.</li>
               <li>Submission of an application does not guarantee approval. All applications are subject to review.</li>
-              <li>The Featured listing is limited to one business per city and is offered on a first-come, first-served basis.</li>
               <li>Upon approval and payment, listing fees are earned and non-refundable.</li>
               <li>Payment secures placement in the directory and inclusion at launch.</li>
               <li>Listings remain active for the purchased term unless removed for violation of these Terms or applicable law.</li>

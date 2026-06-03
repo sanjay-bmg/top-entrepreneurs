@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useForm, Controller, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useRef } from "react";
 import { ChevronRight, ChevronLeft, Check, Plus, Trash2 } from "lucide-react";
 import { applySchema, type ApplyFormData } from "@/lib/schema";
 import { FormField, Input, Textarea, Select } from "./FormField";
@@ -90,14 +90,11 @@ export default function ApplyForm() {
     control,
     watch,
     trigger,
-    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ApplyFormData>({
     resolver: zodResolver(applySchema),
     defaultValues: {
       type: "apply",
-      featuredPlacement: true,
-      excludedFeatured: [],
       industries: [],
       assetPermission: undefined,
       owners: [],
@@ -107,9 +104,7 @@ export default function ApplyForm() {
   });
 
   const watchedIndustries = watch("industries");
-  const watchedFeatured = watch("featuredPlacement");
   const watchedLocations = watch("locations");
-  const watchedExcluded = watch("excludedFeatured");
 
   const { fields: ownerFields, append: appendOwner, remove: removeOwner } = useFieldArray({
     control,
@@ -121,46 +116,6 @@ export default function ApplyForm() {
     name: "locations",
   });
 
-  // "city|state" keys whose single Featured slot is already taken
-  const [takenCities, setTakenCities] = useState<string[]>([]);
-
-  const checkAvailability = useCallback(async (city: string, state: string) => {
-    if (!city || !state) return;
-    try {
-      const params = new URLSearchParams({ city, state });
-      const res = await fetch(`/api/cities/availability?${params}`);
-      const data = await res.json();
-      const key = `${city}|${state}`;
-      setTakenCities((prev) => {
-        const without = prev.filter((k) => k !== key);
-        return data.featuredTaken ? [...without, key] : without;
-      });
-    } catch {
-      // Fail open — don't block the form
-    }
-  }, []);
-
-  // Re-check all locations when featured toggles
-  useEffect(() => {
-    if (!watchedFeatured) {
-      setTakenCities([]);
-      return;
-    }
-    watchedLocations?.forEach((loc) => {
-      if (loc.city && loc.state) {
-        checkAvailability(loc.city, loc.state);
-      }
-    });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchedFeatured]);
-
-  function toggleFeaturedSlot(key: string) {
-    const current = watchedExcluded ?? [];
-    const next = current.includes(key)
-      ? current.filter((k) => k !== key)
-      : [...current, key];
-    setValue("excludedFeatured", next);
-  }
 
   async function goNext() {
     const valid = await trigger(STEP_FIELDS[step]);
@@ -185,10 +140,7 @@ export default function ApplyForm() {
   async function onSubmit(data: ApplyFormData) {
     setServerError(null);
     try {
-      const payload: ApplyFormData = {
-        ...data,
-        excludedFeatured: [...new Set([...(data.excludedFeatured ?? []), ...takenCities])],
-      };
+      const payload: ApplyFormData = { ...data };
       const res = await fetch("/api/apply", {
         method: "POST",
         headers: {
@@ -215,12 +167,7 @@ export default function ApplyForm() {
     }, 50);
   }
 
-  // Featured spot taken in every selected city → block the checkbox
   const validLocations = watchedLocations?.filter((l) => l.city && l.state) ?? [];
-  const allCitiesTaken =
-    watchedFeatured &&
-    validLocations.length > 0 &&
-    validLocations.every((loc) => takenCities.includes(`${loc.city}|${loc.state}`));
 
   return (
     <form ref={formRef} onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -381,9 +328,6 @@ export default function ApplyForm() {
                                 value={cityField.value}
                                 onChange={(city) => {
                                   cityField.onChange(city);
-                                  if (city && stateVal && watchedFeatured) {
-                                    checkAvailability(city, stateVal);
-                                  }
                                 }}
                                 error={errors.locations?.[index]?.city?.message}
                               />
@@ -396,11 +340,7 @@ export default function ApplyForm() {
                         <button
                           type="button"
                           onClick={() => {
-                            const city = watchedLocations?.[index]?.city;
                             removeLocation(index);
-                            if (city) {
-                              setTakenCities((prev) => prev.filter((k) => !k.startsWith(`${city}|`)));
-                            }
                           }}
                           className="mt-6 text-muted hover:text-red-500 transition-colors flex-shrink-0"
                           aria-label="Remove city"
@@ -430,7 +370,7 @@ export default function ApplyForm() {
               Industries <span className="text-red-500">*</span>
             </p>
             <p className="text-sm text-muted">
-              Select every category your business fits. Your first industry is $289/yr per city; each additional is $89/yr per city.
+              Select every category your business fits. Your first industry is $289/yr per city; additional industries are included free.
             </p>
             <Controller
               name="industries"
@@ -445,64 +385,9 @@ export default function ApplyForm() {
             />
           </div>
 
-          {/* Featured Listing — one per city upsell */}
-          <div className={`rounded-xl border-2 transition-colors ${
-            allCitiesTaken
-              ? "border-cream-dark bg-cream opacity-60"
-              : watchedFeatured
-              ? "border-gold bg-gold/5"
-              : "border-gold/40 bg-white hover:border-gold/70"
-          }`}>
-            <label className={`flex items-start gap-4 p-5 ${allCitiesTaken ? "cursor-not-allowed" : "cursor-pointer"}`}>
-              <input
-                type="checkbox"
-                {...register("featuredPlacement")}
-                disabled={!!allCitiesTaken}
-                className="mt-1 h-5 w-5 rounded accent-gold flex-shrink-0"
-                onChange={(e) => {
-                  register("featuredPlacement").onChange(e);
-                  if (!e.target.checked) {
-                    setTakenCities([]);
-                  } else {
-                    watchedLocations?.forEach((loc) => {
-                      if (loc.city && loc.state) {
-                        checkAvailability(loc.city, loc.state);
-                      }
-                    });
-                  }
-                }}
-              />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <p className="font-display font-bold text-navy text-lg">Featured Listing</p>
-                  <span className="inline-flex items-center rounded-full bg-gold px-2.5 py-0.5 text-xs font-bold text-white uppercase tracking-wide">
-                    Recommended
-                  </span>
-                </div>
-                <p className="text-gold font-bold text-base mt-0.5">+$689 per city — only one business per city</p>
-                <p className="text-sm text-muted mt-2 leading-relaxed">
-                  Claim the single top spot in your city before someone else does. Your business appears above every other listing — with a <strong className="text-navy">Featured</strong> badge. There is only one Featured spot per city, sold on a first-come basis.
-                </p>
-                {allCitiesTaken && (
-                  <p className="text-xs text-red-600 mt-2 font-medium">
-                    The Featured spot is already taken in your selected cities.
-                  </p>
-                )}
-              </div>
-            </label>
-            <div className="px-5 pb-4 flex items-center gap-2 text-xs text-muted border-t border-gold/20 pt-3">
-              <span className="inline-block h-2 w-2 rounded-full bg-green-400 flex-shrink-0" />
-              One per city — spots fill quickly after launch
-            </div>
-          </div>
-
           <PricingEstimate
             industries={watchedIndustries ?? []}
             cities={validLocations}
-            featured={watchedFeatured ?? false}
-            excludedFeatured={watchedExcluded ?? []}
-            takenCities={takenCities}
-            onToggleFeatured={toggleFeaturedSlot}
           />
         </div>
       )}

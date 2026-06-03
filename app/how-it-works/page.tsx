@@ -127,19 +127,10 @@ export default function HowItWorksPage() {
                 },
                 {
                   label: "Additional industries",
-                  price: `${formatCurrency(PRICING.additionalIndustry)} each / city`,
+                  price: "Free",
                   features: [
                     "Full listing in every additional industry",
                     "Expands your reach to everyone you serve",
-                  ],
-                },
-                {
-                  label: "Featured Listing (the top spot)",
-                  price: `+${formatCurrency(PRICING.featuredCity)} / city`,
-                  features: [
-                    "The single top spot on your city page",
-                    "Displayed above all other businesses",
-                    "Only one per city — first-come, first-served",
                   ],
                 },
               ].map(({ label, price, features }) => (
@@ -168,8 +159,7 @@ export default function HowItWorksPage() {
             </div>
 
             <p className="text-center text-xs text-muted mt-6">
-              Annual listing. All listings debut at the 2027 launch. The Featured
-              listing is one per city, on a first-come basis.
+              Annual listing. All listings debut at the 2027 launch. Additional industries are included free.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
