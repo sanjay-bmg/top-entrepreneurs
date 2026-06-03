@@ -45,13 +45,9 @@ export async function sendLeadEmail(
   const cityCount = Math.max(1, data.locations.length);
   const industryCount = data.industries.length;
 
-  const industryLines: string[] = [];
-  data.industries.forEach((area, i) => {
-    const rate = i === 0 ? PRICING.primaryIndustry : PRICING.additionalIndustry;
-    const label = i === 0 ? "Primary category" : "Additional category";
-    const amountStr = rate === 0 ? "Free" : formatCurrency(rate * cityCount);
-    industryLines.push(`  ${label}: ${area.padEnd(34)} ${amountStr}`);
-  });
+  const industryLines: string[] = data.industries.map(
+    (area) => `  ${area}`
+  );
 
   const ownersText =
     data.owners && data.owners.length > 0

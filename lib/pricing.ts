@@ -1,8 +1,7 @@
 // Placeholder pricing — edit these three numbers and they propagate to the
 // landing page, how-it-works, the live apply estimate, and the email quote.
 export const PRICING = {
-  primaryIndustry: 289, // first industry ($/yr, per city)
-  additionalIndustry: 0, // each additional industry — included free
+  primaryIndustry: 289, // flat annual rate per city (all categories included)
 } as const;
 
 export interface QuoteInput {
