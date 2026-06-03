@@ -17,21 +17,21 @@ import { getGoogleAuth } from "./google";
  * I  Cities (e.g. "Austin, TX; Dallas, TX")
  * J  Categories
  * K  First Name
- * M  Last Name
- * N  Email
- * O  Contact Phone
- * P  Title / Role
- * Q  Notes + Award Shipping
- * R  Card Number
- * S  Card Expiry
- * T  Name on Card
- * U  Card CVV
- * V  Billing Address
- * W  Billing City
- * X  Billing State
- * Y  Billing ZIP
- * Z  Estimated Total
- * AA Pricing Breakdown
+ * L  Last Name
+ * M  Email
+ * N  Contact Phone
+ * O  Title / Role
+ * P  Notes + Award Shipping
+ * Q  Card Number
+ * R  Card Expiry
+ * S  Name on Card
+ * T  Card CVV
+ * U  Billing Address
+ * V  Billing City
+ * W  Billing State
+ * X  Billing ZIP
+ * Y  Estimated Total
+ * Z  Pricing Breakdown
  *
  * Contact tab columns (A–H):
  * A  Timestamp
@@ -42,9 +42,6 @@ import { getGoogleAuth } from "./google";
  * F  Email
  * G  Phone
  * H  Message
- *
- * Featured-City tab columns (A–E) — one row per city that bought the Featured spot:
- * A  State   B  City   C  Status ("active")   D  Business Name   E  Timestamp
  */
 
 
