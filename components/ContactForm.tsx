@@ -92,7 +92,7 @@ export default function ContactForm() {
             className="mt-0.5 h-4 w-4 rounded accent-gold flex-shrink-0"
           />
           <span className="text-sm text-muted leading-snug">
-            I agree to be contacted by the {siteConfig.name} team by email or phone regarding my inquiry and listing opportunities.
+            I consent to being contacted by the {siteConfig.name} team regarding my inquiry, and agree to receive marketing communications via email or SMS. Reply STOP to opt out at any time.
           </span>
         </label>
         {errors.consentToContact && (

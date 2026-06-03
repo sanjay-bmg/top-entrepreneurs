@@ -52,8 +52,8 @@ export default function Pricing() {
               <div className="space-y-3 mb-8">
                 <div className="flex items-center justify-between p-4 rounded-xl bg-cream border border-cream-dark">
                   <div>
-                    <p className="font-semibold text-navy text-sm">First industry</p>
-                    <p className="text-xs text-muted mt-0.5">Your primary listing category, per city</p>
+                    <p className="font-semibold text-navy text-sm">Annual listing fee</p>
+                    <p className="text-xs text-muted mt-0.5">One flat rate per city — all industries included</p>
                   </div>
                   <span className="font-display text-2xl font-bold text-navy">
                     <span className="mr-2 text-base font-normal text-muted/60 line-through">{formatCurrency(PRICING.primaryIndustry * 2)}</span>

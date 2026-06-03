@@ -7,7 +7,7 @@ import { siteConfig } from "@/site.config";
 export const metadata: Metadata = {
   title: `About — ${siteConfig.name}`,
   description:
-    "TopEntrepreneurs.com is the premier recognition directory for founders and business owners across the United States. Learn about our mission and our 2027 launch.",
+    "TopEntrepreneurs.com is the premier recognition directory for founders and business owners across the United States. Learn about our mission and our October 2026 launch.",
 };
 
 export default function AboutPage() {
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 {
                   icon: Globe,
                   heading: "Our Reach",
-                  body: "All 50 states. 18 industries. A coordinated 2027 national launch.",
+                  body: "All 50 states. 18 industries. A coordinated October 2026 national launch.",
                 },
               ].map(({ icon: Icon, heading, body }) => (
                 <div key={heading} className="text-center p-6 rounded-xl border border-cream-dark">

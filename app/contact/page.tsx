@@ -89,7 +89,7 @@ export default function ContactPage() {
                 </p>
                 <p className="text-sm text-muted mb-4">
                   Skip the inbox — apply directly online and your listing will go
-                  live at the 2027 directory launch.
+                  live at the October 2026 directory launch.
                 </p>
                 <a
                   href="/apply"

@@ -33,8 +33,8 @@ export default function AwardsDinner() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left: award emblem */}
           <FadeIn direction="left">
-            <div className="flex justify-center lg:justify-start">
-              <div className="relative w-72 sm:w-80">
+            <div className="flex justify-center">
+              <div className="relative w-full max-w-lg">
                 <div className="absolute -inset-6 bg-gold/10 rounded-3xl blur-2xl" />
                 <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 inline-flex items-center gap-2 justify-center px-4 py-1.5 bg-gold text-white font-bold text-[10px] tracking-widest uppercase rounded-full shadow-md whitespace-nowrap">
                   Limited Time: Apply Today
@@ -43,8 +43,8 @@ export default function AwardsDinner() {
                   <Image
                     src="/award.png"
                     alt="Top Entrepreneur Recognition Award 2027"
-                    width={320}
-                    height={400}
+                    width={600}
+                    height={600}
                     className="w-full h-auto"
                   />
                 </div>

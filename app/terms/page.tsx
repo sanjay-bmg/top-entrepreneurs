@@ -25,7 +25,7 @@ export default function TermsPage() {
 
           <Section title="3. Listings">
             <ul>
-              <li>Listings are sold on an annual basis and are scheduled to debut with the coordinated directory launch in 2027.</li>
+              <li>Listings are sold on an annual basis and are scheduled to debut with the coordinated directory launch in October 2026.</li>
               <li>Submission of an application does not guarantee approval. All applications are subject to review.</li>
               <li>Upon approval and payment, listing fees are earned and non-refundable.</li>
               <li>Payment secures placement in the directory and inclusion at launch.</li>

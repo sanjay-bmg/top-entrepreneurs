@@ -30,13 +30,13 @@ const steps = [
     icon: Rocket,
     step: "03",
     heading: "Go Live",
-    body: "Your listing debuts at the coordinated 2027 launch alongside all listed entrepreneurs — a national reveal with press coverage and awareness campaigns.",
+    body: "Your listing debuts at the coordinated October 2026 launch alongside all listed entrepreneurs — a national reveal with press coverage and awareness campaigns.",
   },
   {
     icon: Award,
     step: "04",
     heading: "Be Recognized",
-    body: "Receive your custom recognition award, attend the Awards & Recognition Dinner, and display the Top Entrepreneurs 2027 badge on your own website.",
+    body: "Receive your custom recognition award, attend the Awards & Recognition Dinner, and display the Top Entrepreneurs badge on your own website.",
   },
 ];
 
@@ -159,7 +159,7 @@ export default function HowItWorksPage() {
             </div>
 
             <p className="text-center text-xs text-muted mt-6">
-              Annual listing. All listings debut at the 2027 launch. Additional industries are included free.
+              Annual listing. All listings debut at the October 2026 launch. Additional industries are included free.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

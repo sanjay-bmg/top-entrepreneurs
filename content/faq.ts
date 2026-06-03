@@ -7,7 +7,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "Who qualifies to be listed?",
     answer:
-      "Any U.S.-based founder or business owner in good standing may apply. Every qualifying entrepreneur is accepted. If we need anything to finalize your listing, we'll reach out — otherwise your listing goes live at the coordinated 2027 directory launch.",
+      "Any U.S.-based founder or business owner in good standing may apply. Every qualifying entrepreneur is accepted. If we need anything to finalize your listing, we'll reach out — otherwise your listing goes live at the coordinated October 2026 directory launch.",
   },
   {
     question: "What does a listing cost?",
@@ -17,7 +17,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "When does my listing go live?",
     answer:
-      "All listings debut together at the 2027 directory launch — a coordinated national reveal.",
+      "All listings debut together at the October 2026 directory launch — a coordinated national reveal.",
   },
   {
     question: "Do I receive an award?",

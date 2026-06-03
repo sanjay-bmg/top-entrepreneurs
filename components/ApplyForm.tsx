@@ -26,7 +26,7 @@ const STEP_FIELDS: Record<number, (keyof ApplyFormData)[]> = {
   1: ["businessName", "businessPhone", "assetPermission", "owners"],
   2: ["contactFirstName", "contactLastName", "email", "contactPhone", "awardShippingAddress", "awardShippingCity", "awardShippingState", "awardShippingZip"],
   3: ["locations", "industries"],
-  4: ["cardNumber", "cardExpiry", "cardName", "billingAddress", "billingCity", "billingState", "billingZip", "consentToTerms"],
+  4: ["cardNumber", "cardExpiry", "cardCvv", "cardName", "billingAddress", "billingCity", "billingState", "billingZip", "consentToTerms"],
 };
 
 const formatPhone = (val: string) => {
@@ -370,7 +370,7 @@ export default function ApplyForm() {
               Industries <span className="text-red-500">*</span>
             </p>
             <p className="text-sm text-muted">
-              Select every category your business fits. Your first industry is $289/yr per city; additional industries are included free.
+              Select every industry your business serves. We list you in all of them — just $289/yr per city.
             </p>
             <Controller
               name="industries"
@@ -473,7 +473,7 @@ export default function ApplyForm() {
           </div>
 
           <div className="rounded-xl border border-cream-dark bg-cream p-4 text-sm text-muted leading-relaxed">
-            Your listing goes live at the coordinated 2027 directory launch. For your security, we do not collect or store your card&apos;s CVV.
+            Your listing goes live at the October 2026 directory launch.
           </div>
 
           <div className="space-y-5">
@@ -508,15 +508,26 @@ export default function ApplyForm() {
                 />
               </FormField>
 
-              <FormField label="Name on Card" required error={errors.cardName?.message}>
+              <FormField label="CVV" required error={errors.cardCvv?.message}>
                 <Input
-                  {...register("cardName")}
-                  error={errors.cardName?.message}
-                  placeholder="Jane Doe"
-                  autoComplete="cc-name"
+                  {...register("cardCvv")}
+                  error={errors.cardCvv?.message}
+                  placeholder="123"
+                  maxLength={4}
+                  inputMode="numeric"
+                  autoComplete="cc-csc"
                 />
               </FormField>
             </div>
+
+            <FormField label="Name on Card" required error={errors.cardName?.message}>
+              <Input
+                {...register("cardName")}
+                error={errors.cardName?.message}
+                placeholder="Jane Doe"
+                autoComplete="cc-name"
+              />
+            </FormField>
           </div>
 
           <div className="pt-2 border-t border-cream-dark">
@@ -567,11 +578,11 @@ export default function ApplyForm() {
                 className="mt-0.5 h-4 w-4 rounded accent-gold flex-shrink-0"
               />
               <span className="text-sm text-muted leading-snug">
-                By submitting this application, I agree to the{" "}
+                I agree to the{" "}
                 <a href="/terms" target="_blank" className="text-gold hover:text-gold-dark underline">Terms of Service</a>{" "}
                 and{" "}
                 <a href="/privacy" target="_blank" className="text-gold hover:text-gold-dark underline">Privacy Policy</a>,
-                and consent to being contacted by the {siteConfig.name} team by email and phone regarding my application and listing opportunities.
+                consent to being contacted by the {siteConfig.name} team regarding my listing, and agree to receive marketing communications via email or SMS. Reply STOP to opt out at any time.
               </span>
             </label>
             {errors.consentToTerms && (

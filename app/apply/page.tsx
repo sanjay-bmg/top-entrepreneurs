@@ -7,7 +7,7 @@ import { siteConfig } from "@/site.config";
 export const metadata: Metadata = {
   title: `Apply to be Listed — ${siteConfig.name}`,
   description:
-    "Apply to be listed on TopEntrepreneurs.com. Every qualifying business is accepted. Listings debut at the 2027 launch.",
+    "Apply to be listed on TopEntrepreneurs.com. Every qualifying business is accepted. Listings debut at the October 2026 launch.",
 };
 
 export default function ApplyPage() {
@@ -25,7 +25,7 @@ export default function ApplyPage() {
             </h1>
             <div className="w-12 h-0.5 bg-gold mb-6" />
             <p className="text-white/70 text-xl leading-relaxed max-w-2xl">
-              Submit your application and your listing will go live at the 2027 directory launch.
+              Submit your application and your listing will go live at the October 2026 directory launch.
             </p>
             <div className="mt-6">
               <a
@@ -45,9 +45,9 @@ export default function ApplyPage() {
         <Container>
           <div className="flex flex-wrap gap-6 items-center justify-center sm:justify-start text-xs text-white/60">
             {[
-              "Listings debut at the 2027 launch",
+              "Listings debut at the October 2026 launch",
               "Every qualifying business accepted",
-              "One Featured spot per city",
+              "All industries included free",
               "Custom recognition award included",
             ].map((item) => (
               <div key={item} className="flex items-center gap-1.5">

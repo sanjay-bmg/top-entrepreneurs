@@ -22,7 +22,7 @@ export const siteConfig = {
   legalEntity: "TopEntrepreneurs.com",
   domain: "topentrepreneurs.com",
   url: "https://topentrepreneurs.com",
-  launchYear: 2027,
+  launchYear: 2026,
 
   // Wordmark — the logo is rendered as styled text (see components/Wordmark.tsx)
   wordmark: { top: "TOP", bottom: "ENTREPRENEURS", tld: ".com" },
@@ -45,13 +45,15 @@ export const siteConfig = {
   // Lead notification email — PLACEHOLDERS (the "standard email list")
   // SENDGRID_API_KEY + sender verification handled via env / SendGrid dashboard.
   notifications: {
-    fromEmail: "listings@topentrepreneurs.com",
-    fromName: "TopEntrepreneurs.com",
-    replyTo: "listings@topentrepreneurs.com",
+    // Verified SendGrid single sender (no domain auth needed).
+    // Switch to listings@topentrepreneurs.com once the domain CNAMEs are added.
+    fromEmail: "sbansal@brianmarketinggroup.com",
+    fromName: "Top Entrepreneurs",
+    replyTo: "sbansal@brianmarketinggroup.com",
     // When the submitter uses this email, only it receives the notification (test mode).
-    testEmail: "test@topentrepreneurs.com",
+    testEmail: "sbansal@brianmarketinggroup.com",
     recipients: [
-      "listings@topentrepreneurs.com",
+      "sbansal@brianmarketinggroup.com",
     ],
   },
 

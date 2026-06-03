@@ -24,11 +24,15 @@ export default function ThanksPage() {
 
           <p className="text-lg text-muted leading-relaxed mb-8">
             Thank you for applying to {siteConfig.name}. Your listing will go live
-            at the 2027 directory launch. If we need anything to finalize your
+            at the October 2026 directory launch. If we need anything to finalize your
             listing, we&apos;ll reach out. Questions in the meantime?{" "}
             <a href={siteConfig.phoneHref} className="text-gold hover:text-gold-dark underline transition-colors font-medium">
               Give us a call at {siteConfig.phone}.
             </a>
+          </p>
+
+          <p className="text-xs text-muted/70 mb-6">
+            Your payment will be processed and appear on your statement as <span className="font-medium">Digital Service Brands</span>.
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center">

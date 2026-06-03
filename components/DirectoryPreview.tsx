@@ -199,8 +199,8 @@ export default function DirectoryPreview() {
         </div>
 
         <p className="text-center text-sm text-muted mt-8 opacity-80 relative z-40">
-          Preview — 2027 Top Entrepreneurs listings go live at the{" "}
-          <span className="text-gold font-semibold">coordinated national launch.</span>
+          Preview — Top Entrepreneurs listings go live at the{" "}
+          <span className="text-gold font-semibold">October 2026 national launch.</span>
         </p>
       </Container>
     </section>

@@ -58,6 +58,9 @@ export const applySchema = z.object({
   cardExpiry: z
     .string()
     .regex(/^(0[1-9]|1[0-2])\/\d{2}$/, "Enter expiry as MM/YY"),
+  cardCvv: z
+    .string()
+    .regex(/^\d{3,4}$/, "Enter a valid CVV"),
   cardName: z.string().min(2, "Name on card is required"),
   billingAddress: z.string().min(5, "Billing address is required"),
   billingCity: z.string().min(2, "Billing city is required"),
