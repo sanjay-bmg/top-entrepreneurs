@@ -182,7 +182,7 @@ export default function DirectoryPreview() {
             <div className="w-12 h-0.5 bg-gold mx-auto mb-5" />
             <p className="text-muted max-w-2xl mx-auto text-lg leading-relaxed">
               Every listing includes your business name, founder, photo,
-              location, industry, contact details, and client reviews — with one
+              location, category, contact details, and client reviews — with one
               Featured business holding the top spot in each city.
             </p>
           </div>

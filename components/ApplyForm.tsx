@@ -18,7 +18,7 @@ import { siteConfig } from "@/site.config";
 const STEPS = [
   { number: 1, label: "Business Details" },
   { number: 2, label: "Contact Info" },
-  { number: 3, label: "Industries & Cities" },
+  { number: 3, label: "Categories & Cities" },
   { number: 4, label: "Billing" },
 ] as const;
 
@@ -282,8 +282,8 @@ export default function ApplyForm() {
       {step === 3 && (
         <div className="space-y-6">
           <div>
-            <h2 className="font-display text-2xl font-bold text-navy mb-1">Industries &amp; Cities</h2>
-            <p className="text-sm text-muted">Where you operate and what you do.</p>
+            <h2 className="font-display text-2xl font-bold text-navy mb-1">Categories &amp; Cities</h2>
+            <p className="text-sm text-muted">Where you operate and which categories you fit.</p>
           </div>
 
           {/* Locations */}
@@ -367,10 +367,10 @@ export default function ApplyForm() {
           {/* Industries */}
           <div className="space-y-3">
             <p className="text-sm font-semibold text-navy">
-              Industries <span className="text-red-500">*</span>
+              Recognition Categories <span className="text-red-500">*</span>
             </p>
             <p className="text-sm text-muted">
-              Select every industry your business serves. We list you in all of them — just $289/yr per city.
+              Select every category your business fits. We list you across all of them — just $289/yr per city.
             </p>
             <Controller
               name="industries"

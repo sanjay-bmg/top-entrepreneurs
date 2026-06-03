@@ -23,7 +23,7 @@ export default function PrivacyPage() {
           <Section title="2. Information We Collect">
             <p>We may collect the following categories of information:</p>
             <ul>
-              <li><strong className="text-navy">Business Information:</strong> name, website, phone number, industries, city, and state</li>
+              <li><strong className="text-navy">Business Information:</strong> name, website, phone number, recognition categories, city, and state</li>
               <li><strong className="text-navy">Contact Information:</strong> name, email address, phone number, and job title</li>
               <li><strong className="text-navy">Payment Information:</strong> billing details necessary to process listing fees. Payment information is processed securely. We do not store full credit card numbers or card security codes (CVV) on our servers.</li>
               <li><strong className="text-navy">Usage Data:</strong> pages visited, referral source, and session data collected through tools such as Google Analytics</li>

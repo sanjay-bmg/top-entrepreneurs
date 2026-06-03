@@ -31,10 +31,10 @@ export const applySchema = z.object({
   ).min(1, "Add at least one city"),
   industries: z
     .array(z.string())
-    .min(1, "Select at least one industry")
+    .min(1, "Select at least one category")
     .refine(
       (areas) => areas.every((a) => allIndustries.includes(a)),
-      "Invalid industry",
+      "Invalid category",
     ),
   // Step 3: Contact Info
   contactFirstName: z.string().min(1, "First name is required"),

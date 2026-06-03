@@ -55,7 +55,7 @@ export default function AboutPage() {
                 {
                   icon: Target,
                   heading: "Our Mission",
-                  body: "Recognize the founders and owners building standout businesses across every industry and major U.S. city.",
+                  body: "Recognize the founders and owners building standout businesses across every category and major U.S. city.",
                 },
                 {
                   icon: ShieldCheck,
@@ -65,7 +65,7 @@ export default function AboutPage() {
                 {
                   icon: Globe,
                   heading: "Our Reach",
-                  body: "All 50 states. 18 industries. A coordinated October 2026 national launch.",
+                  body: "All 50 states. 18 recognition categories. A coordinated October 2026 national launch.",
                 },
               ].map(({ icon: Icon, heading, body }) => (
                 <div key={heading} className="text-center p-6 rounded-xl border border-cream-dark">

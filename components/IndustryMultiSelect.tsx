@@ -75,7 +75,7 @@ export default function IndustryMultiSelect({
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted pointer-events-none" />
         <input
           type="text"
-          placeholder="Search industries…"
+          placeholder="Search categories…"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className={clsx(
@@ -94,7 +94,7 @@ export default function IndustryMultiSelect({
       >
         {filteredGroups.length === 0 && (
           <p className="px-4 py-3 text-sm text-muted text-center">
-            No industries match your search.
+            No categories match your search.
           </p>
         )}
         {filteredGroups.map((group) => {

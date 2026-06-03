@@ -16,8 +16,8 @@ export default function AnnouncementBanner() {
             </p>
             <p className="text-white/60 text-sm mt-0.5">
               {siteConfig.name} recognizes the founders and owners building
-              standout businesses across the country. List in every industry
-              you serve — included at no extra cost.
+              standout businesses across the country. Listed across every
+              recognition category — all included.
             </p>
           </div>
           <div className="flex-shrink-0 ml-auto hidden sm:flex items-center gap-3">

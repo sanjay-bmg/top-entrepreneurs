@@ -48,7 +48,7 @@ export async function sendLeadEmail(
   const industryLines: string[] = [];
   data.industries.forEach((area, i) => {
     const rate = i === 0 ? PRICING.primaryIndustry : PRICING.additionalIndustry;
-    const label = i === 0 ? "Primary industry " : "Additional industry";
+    const label = i === 0 ? "Primary category" : "Additional category";
     const amountStr = rate === 0 ? "Free" : formatCurrency(rate * cityCount);
     industryLines.push(`  ${label}: ${area.padEnd(34)} ${amountStr}`);
   });
@@ -78,7 +78,7 @@ Cities:        ${data.locations.map(l => `${l.city}, ${l.state}`).join(" | ")}
 Owners Listed: ${ownersText}
 Assets:        ${data.assetPermission === "grant" ? "Permission granted to use website assets" : "Support team to contact for assets"}
 
-INDUSTRIES (${industryCount} ${industryCount > 1 ? "industries" : "industry"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"})
+CATEGORIES (${industryCount} ${industryCount > 1 ? "categories" : "category"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"})
 ${industryLines.join("\n")}
 
 CONTACT

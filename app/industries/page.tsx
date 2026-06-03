@@ -7,9 +7,9 @@ import { PRICING, formatCurrency } from "@/lib/pricing";
 import { siteConfig } from "@/site.config";
 
 export const metadata: Metadata = {
-  title: `Industries — ${siteConfig.name}`,
+  title: `Recognition Categories — ${siteConfig.name}`,
   description:
-    "TopEntrepreneurs.com covers 18 major business industries, each with dozens of sub-categories. Apply to be listed in any industry you operate in.",
+    "TopEntrepreneurs.com covers 18 major recognition categories, each with dozens of sub-categories. Apply to be listed in every category that fits your business.",
 };
 
 export default function IndustriesPage() {
@@ -28,21 +28,17 @@ export default function IndustriesPage() {
               Coverage
             </p>
             <h1 className="font-display text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
-              Industries We Cover
+              Recognition Categories
             </h1>
             <div className="w-12 h-0.5 bg-gold mb-6" />
             <p className="text-white/70 text-xl leading-relaxed">
-              {siteConfig.name} lists businesses across {industryGroups.length}{" "}
-              major industries — each covering multiple sub-categories. Apply in
-              one industry or many — your first is{" "}
+              {siteConfig.name} lists founders across {industryGroups.length}{" "}
+              major recognition categories — each covering multiple sub-categories.
+              Apply in one or many — all categories are included for{" "}
               <span className="text-gold font-semibold">
                 {formatCurrency(PRICING.primaryIndustry)}
               </span>{" "}
-              per city, each additional is{" "}
-              <span className="text-gold font-semibold">
-                {formatCurrency(PRICING.additionalIndustry)}
-              </span>
-              .
+              per city.
             </p>
           </div>
         </Container>
@@ -57,7 +53,7 @@ export default function IndustriesPage() {
                 {industryGroups.length}
               </p>
               <p className="text-xs text-white/50 uppercase tracking-widest">
-                Industries
+                Categories
               </p>
             </div>
             <div>
@@ -78,7 +74,7 @@ export default function IndustriesPage() {
         </Container>
       </div>
 
-      {/* Industry groups */}
+      {/* Category groups */}
       <section className="bg-white py-16 lg:py-20">
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
@@ -91,8 +87,7 @@ export default function IndustriesPage() {
                   {group.category}
                 </h2>
                 <p className="text-xs text-gold font-semibold uppercase tracking-widest mb-4 pb-3 border-b border-cream-dark">
-                  {formatCurrency(PRICING.primaryIndustry)} primary ·{" "}
-                  {formatCurrency(PRICING.additionalIndustry)} additional
+                  {formatCurrency(PRICING.primaryIndustry)} / city · all categories included
                 </p>
                 <p className="text-xs text-muted font-medium uppercase tracking-widest mb-2">
                   Includes
@@ -114,14 +109,14 @@ export default function IndustriesPage() {
 
           <div className="mt-16 rounded-2xl bg-navy p-10 text-center">
             <p className="text-xs font-semibold text-gold uppercase tracking-widest mb-3">
-              Don&apos;t see your industry?
+              Don&apos;t see your category?
             </p>
             <h3 className="font-display text-2xl font-bold text-white mb-3">
               We cover it — apply anyway.
             </h3>
             <p className="text-white/60 mb-6 max-w-md mx-auto">
-              If your exact industry isn&apos;t listed, apply under the closest
-              category and note your focus in the application. Our team reviews
+              If your exact category isn&apos;t listed, apply under the closest
+              match and note your focus in the application. Our team reviews
               all submissions.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

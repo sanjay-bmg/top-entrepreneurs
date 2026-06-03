@@ -12,7 +12,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "What does a listing cost?",
     answer:
-      "$289 per city for your first industry. Additional industries are included free — add every category your business serves at no extra cost. Pricing is for the annual listing.",
+      "$289/yr per city — covers all your recognition categories. Add as many as your business fits at no extra cost.",
   },
   {
     question: "When does my listing go live?",
@@ -32,7 +32,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How are businesses ranked?",
     answer:
-      "Within each city and industry, businesses are ordered by verified client review rating.",
+      "Within each city and category, businesses are ordered by verified client review rating.",
   },
   {
     question: "Can I cancel my listing?",

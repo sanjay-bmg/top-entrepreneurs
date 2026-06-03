@@ -116,21 +116,13 @@ export default function HowItWorksPage() {
             <div className="space-y-4">
               {[
                 {
-                  label: "Standard Listing — first industry",
+                  label: "Annual listing fee",
                   price: `${formatCurrency(PRICING.primaryIndustry)} / city`,
                   features: [
                     "Full business profile with photo & description",
                     "Custom recognition award",
                     "Invitation to the Awards & Recognition Dinner",
                     "Eligibility for the Top Entrepreneurs honor",
-                  ],
-                },
-                {
-                  label: "Additional industries",
-                  price: "Free",
-                  features: [
-                    "Full listing in every additional industry",
-                    "Expands your reach to everyone you serve",
                   ],
                 },
               ].map(({ label, price, features }) => (
@@ -159,7 +151,7 @@ export default function HowItWorksPage() {
             </div>
 
             <p className="text-center text-xs text-muted mt-6">
-              Annual listing. All listings debut at the October 2026 launch. Additional industries are included free.
+              Annual listing. All listings debut at the October 2026 launch. All recognition categories included.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

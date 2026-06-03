@@ -47,7 +47,7 @@ export default function ApplyPage() {
             {[
               "Listings debut at the October 2026 launch",
               "Every qualifying business accepted",
-              "All industries included free",
+              "All categories included",
               "Custom recognition award included",
             ].map((item) => (
               <div key={item} className="flex items-center gap-1.5">

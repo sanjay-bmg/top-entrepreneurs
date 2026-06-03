@@ -27,16 +27,8 @@ export function calculateQuote({ industries, cities }: QuoteInput): Quote {
 
   if (industryCount >= 1) {
     lineItems.push({
-      label: `Primary industry × ${cityCount} cit${cityCount > 1 ? "ies" : "y"}`,
+      label: `Annual listing × ${cityCount} cit${cityCount > 1 ? "ies" : "y"}`,
       amount: PRICING.primaryIndustry * cityCount,
-    });
-  }
-
-  if (industryCount > 1) {
-    const additionalCount = industryCount - 1;
-    lineItems.push({
-      label: `${additionalCount} additional ${additionalCount > 1 ? "industries" : "industry"} — included free`,
-      amount: 0,
     });
   }
 

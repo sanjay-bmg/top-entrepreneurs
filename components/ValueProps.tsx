@@ -6,12 +6,12 @@ const props = [
   {
     icon: Building2,
     heading: "Get Listed.",
-    body: "Apply to be listed by your city and industry. Every qualifying founder and business owner is accepted.",
+    body: "Apply to be listed by your city and recognition category. Every qualifying founder and business owner is accepted.",
   },
   {
     icon: Tag,
     heading: "Add Industries.",
-    body: "List your business in every industry you serve — at no extra cost. Reach every customer looking for what you do.",
+    body: "List your business across every category you fit — at no extra cost. Reach every founder and investor searching for what you do.",
   },
   {
     icon: Trophy,

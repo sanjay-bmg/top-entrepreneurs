@@ -7,7 +7,7 @@ import { siteConfig } from "@/site.config";
 
 const LISTING_FEATURES = [
   "Full business profile with photo & description",
-  "Listed by city and industry",
+  "Listed by city and recognition category",
   "Contact details & client reviews",
   "Custom Top Entrepreneurs recognition award",
   "Eligibility for the Top Entrepreneurs honor",
@@ -53,21 +53,12 @@ export default function Pricing() {
                 <div className="flex items-center justify-between p-4 rounded-xl bg-cream border border-cream-dark">
                   <div>
                     <p className="font-semibold text-navy text-sm">Annual listing fee</p>
-                    <p className="text-xs text-muted mt-0.5">One flat rate per city — all industries included</p>
+                    <p className="text-xs text-muted mt-0.5">One flat rate per city — all categories included</p>
                   </div>
                   <span className="font-display text-2xl font-bold text-navy">
                     <span className="mr-2 text-base font-normal text-muted/60 line-through">{formatCurrency(PRICING.primaryIndustry * 2)}</span>
                     {formatCurrency(PRICING.primaryIndustry)}
                     <span className="text-sm font-normal text-muted">/yr</span>
-                  </span>
-                </div>
-                <div className="flex items-center justify-between p-4 rounded-xl bg-cream border border-cream-dark">
-                  <div>
-                    <p className="font-semibold text-navy text-sm">Each additional industry</p>
-                    <p className="text-xs text-muted mt-0.5">Expand to every category you serve</p>
-                  </div>
-                  <span className="font-display text-2xl font-bold text-gold">
-                    Free
                   </span>
                 </div>
               </div>
@@ -93,7 +84,7 @@ export default function Pricing() {
 
         <FadeIn delay={0.2}>
           <p className="text-center text-xs text-muted mt-8 max-w-lg mx-auto">
-            Annual listing. Add as many industries as your business serves — all included.
+            Annual listing. Add as many categories as your business fits — all included.
           </p>
           <div className="flex justify-center mt-6">
             <a
