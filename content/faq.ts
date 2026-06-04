@@ -12,7 +12,12 @@ export const faqItems: FaqItem[] = [
   {
     question: "What does a listing cost?",
     answer:
-      "$289/yr per city — covers all your recognition categories. Add as many as your business fits at no extra cost.",
+      "$289/yr per city — covers all your recognition categories, with as many as your business fits at no extra cost. The Top Spot, an optional premium placement, is +$689/yr for each city you want it in.",
+  },
+  {
+    question: "What is the Top Spot?",
+    answer:
+      "The Top Spot is the single premium placement above every other business on a city's page, marked with a Top Spot badge. Only one business can hold it per city, and it's sold first-come. You choose which of your cities to claim it in — +$689/yr per city, on top of your listing.",
   },
   {
     question: "When does my listing go live?",
@@ -32,7 +37,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How are businesses ranked?",
     answer:
-      "Within each city and category, businesses are ordered by verified client review rating.",
+      "Within each city and category, businesses are ordered by verified client review rating. The Top Spot holder, if any, is placed above the ranked listings.",
   },
   {
     question: "Can I cancel my listing?",

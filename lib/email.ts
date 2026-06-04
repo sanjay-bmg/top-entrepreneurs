@@ -40,6 +40,8 @@ export async function sendLeadEmail(
   const quote = calculateQuote({
     industries: data.industries,
     cities: data.locations,
+    featured: data.featuredPlacement,
+    excludedFeatured: data.excludedFeatured ?? [],
   });
 
   const cityCount = Math.max(1, data.locations.length);
@@ -47,6 +49,14 @@ export async function sendLeadEmail(
 
   const industryLines: string[] = data.industries.map(
     (area) => `  ${area}`
+  );
+
+  const excludedFeatured = data.excludedFeatured ?? [];
+  const topSpotCities = data.featuredPlacement
+    ? data.locations.filter((l) => !excludedFeatured.includes(`${l.city}|${l.state}`))
+    : [];
+  const topSpotLines: string[] = topSpotCities.map(
+    (l) => `  ${l.city}, ${l.state}: ${formatCurrency(PRICING.featuredCity)}`,
   );
 
   const ownersText =
@@ -76,6 +86,9 @@ Assets:        ${data.assetPermission === "grant" ? "Permission granted to use w
 
 CATEGORIES (${industryCount} ${industryCount > 1 ? "categories" : "category"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"})
 ${industryLines.join("\n")}
+
+TOP SPOT (premium — one per city)
+${data.featuredPlacement ? (topSpotLines.length > 0 ? topSpotLines.join("\n") : "  Selected, but no cities included") : "  Not selected"}
 
 CONTACT
 Name:   ${data.contactFirstName} ${data.contactLastName}${data.contactTitle ? ` (${data.contactTitle})` : ""}

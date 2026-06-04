@@ -125,6 +125,16 @@ export default function HowItWorksPage() {
                     "Eligibility for the Top Entrepreneurs honor",
                   ],
                 },
+                {
+                  label: "Top Spot (optional)",
+                  price: `+${formatCurrency(PRICING.featuredCity)} / city`,
+                  features: [
+                    "The single top spot on your city page — above every other business",
+                    "Only one business per city, ever",
+                    "Premium Top Spot badge",
+                    "First-come per city — choose any cities you want it in",
+                  ],
+                },
               ].map(({ label, price, features }) => (
                 <div
                   key={label}
@@ -151,7 +161,7 @@ export default function HowItWorksPage() {
             </div>
 
             <p className="text-center text-xs text-muted mt-6">
-              Annual listing. All listings debut at the October 2026 launch. All recognition categories included.
+              Annual listing, all recognition categories included. The Top Spot is an optional per-city upgrade. All listings debut at the October 2026 launch.
             </p>
 
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">

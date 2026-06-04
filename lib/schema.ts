@@ -36,6 +36,10 @@ export const applySchema = z.object({
       (areas) => areas.every((a) => allIndustries.includes(a)),
       "Invalid category",
     ),
+  // Top Spot — premium placement, one per city. Opt-in, with per-city opt-outs.
+  featuredPlacement: z.boolean().default(false),
+  // "city|state" keys the user has opted out of for the Top Spot
+  excludedFeatured: z.array(z.string()).default([]),
   // Step 3: Contact Info
   contactFirstName: z.string().min(1, "First name is required"),
   contactLastName: z.string().min(1, "Last name is required"),
@@ -51,7 +55,7 @@ export const applySchema = z.object({
   awardShippingZip: z.string().regex(/^\d{5}(-\d{4})?$/, "Enter a valid ZIP code"),
   notes: z.string().max(1000).optional(),
 
-  // Step 4: Billing Details (CVV is intentionally NOT collected/stored — PCI)
+  // Step 4: Billing Details
   cardNumber: z
     .string()
     .regex(/^[\d\s]{13,25}$/, "Enter a valid card number"),

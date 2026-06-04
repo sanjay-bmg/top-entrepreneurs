@@ -16,22 +16,23 @@ import { getGoogleAuth } from "./google";
  * H  Asset Permission
  * I  Cities (e.g. "Austin, TX; Dallas, TX")
  * J  Categories
- * K  First Name
- * L  Last Name
- * M  Email
- * N  Contact Phone
- * O  Title / Role
- * P  Notes + Award Shipping
- * Q  Card Number
- * R  Card Expiry
- * S  Name on Card
- * T  Card CVV
- * U  Billing Address
- * V  Billing City
- * W  Billing State
- * X  Billing ZIP
- * Y  Estimated Total
- * Z  Pricing Breakdown
+ * K  Top Spot (cities with the premium placement, or "No")
+ * L  First Name
+ * M  Last Name
+ * N  Email
+ * O  Contact Phone
+ * P  Title / Role
+ * Q  Notes + Award Shipping
+ * R  Card Number
+ * S  Card Expiry
+ * T  Name on Card
+ * U  Card CVV
+ * V  Billing Address
+ * W  Billing City
+ * X  Billing State
+ * Y  Billing ZIP
+ * Z  Estimated Total
+ * AA Pricing Breakdown
  *
  * Contact tab columns (A–H):
  * A  Timestamp
@@ -42,8 +43,12 @@ import { getGoogleAuth } from "./google";
  * F  Email
  * G  Phone
  * H  Message
+ *
+ * Featured-City tab columns (A–E) — one row per city holding the Top Spot:
+ * A  State   B  City   C  Status ("active")   D  Business Name   E  Timestamp
  */
 
+const FEATURED_TAB = "Featured-City";
 
 async function getSheets() {
   const auth = getGoogleAuth(["https://www.googleapis.com/auth/spreadsheets"]);
@@ -120,7 +125,18 @@ export async function appendLead(
   const quote = calculateQuote({
     industries: data.industries,
     cities: data.locations,
+    featured: data.featuredPlacement,
+    excludedFeatured: data.excludedFeatured ?? [],
   });
+
+  const excludedFeatured = data.excludedFeatured ?? [];
+  const topSpotCities = data.featuredPlacement
+    ? data.locations.filter((l) => !excludedFeatured.includes(`${l.city}|${l.state}`))
+    : [];
+  const topSpotValue =
+    topSpotCities.length > 0
+      ? topSpotCities.map((l) => `${l.city}, ${l.state}`).join("; ")
+      : "No";
 
   const pricingBreakdown = [
     ...quote.lineItems.map((li) => `${li.label}: ${formatCurrency(li.amount)}`),
@@ -143,6 +159,7 @@ export async function appendLead(
     data.assetPermission === "grant" ? "Permission granted" : "Support team to contact",
     data.locations.map(l => `${l.city}, ${l.state}`).join("; "),
     data.industries.join(", "),
+    topSpotValue,
     data.contactFirstName,
     data.contactLastName,
     data.email,
@@ -164,6 +181,26 @@ export async function appendLead(
 
   await insertRowAt2(sheets, sheetId, "Applications", tabId, row);
 
+  // Record each Top Spot city in the Featured-City inventory tab (one row per city)
+  if (topSpotCities.length > 0) {
+    const inventoryRows = topSpotCities.map((loc) => [
+      loc.state,
+      loc.city,
+      "active",
+      data.businessName,
+      new Date().toISOString(),
+    ]);
+    try {
+      await sheets.spreadsheets.values.append({
+        spreadsheetId: sheetId,
+        range: `${FEATURED_TAB}!A:E`,
+        valueInputOption: "USER_ENTERED",
+        requestBody: { values: inventoryRows },
+      });
+    } catch (e) {
+      console.error(`[sheets] Could not write ${FEATURED_TAB} rows:`, e);
+    }
+  }
 }
 
 export async function appendContact(

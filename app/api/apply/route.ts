@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { applySchema, contactSchema } from "@/lib/schema";
 import { appendLead, appendContact } from "@/lib/sheets";
 import { sendLeadEmail, sendContactEmail } from "@/lib/email";
+import { clearCache as clearAvailabilityCache } from "@/lib/availabilityCache";
 /* Simple in-memory rate limiter: max 5 submissions per IP per minute */
 const rateMap = new Map<string, { count: number; reset: number }>();
 
@@ -90,6 +91,9 @@ export async function POST(req: NextRequest) {
 
   await appendLead(result.data, meta).catch(e => console.error("Sheets error:", e));
   await sendLeadEmail(result.data, meta).catch(e => console.error("Email error:", e));
+
+  // A new Top Spot was just claimed — bust the availability cache so it shows immediately
+  if (result.data.featuredPlacement) clearAvailabilityCache();
 
   return NextResponse.json({ ok: true });
 }
