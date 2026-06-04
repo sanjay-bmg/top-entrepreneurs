@@ -6,8 +6,8 @@ import { getGoogleAuth } from "@/lib/google";
 /*
  * GET /api/cities/availability?city=Austin&state=TX
  *
- * Returns whether this city's single Featured listing is already taken.
- * Reads the "Featured-City" sheet tab.
+ * Returns whether this city's single Top Spot is already taken.
+ * Reads the "Top-Spots" sheet tab.
  *
  * Sheet columns: state | city | status | business_name | timestamp
  * A row is "taken" when status === "active".
@@ -15,7 +15,7 @@ import { getGoogleAuth } from "@/lib/google";
  * Response: { featuredTaken: boolean }
  */
 
-const TAB = "Featured-City";
+const TAB = "Top-Spots";
 
 async function getTakenCities(): Promise<{ state: string; city: string }[]> {
   const cached = getCache();

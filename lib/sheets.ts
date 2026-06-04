@@ -44,11 +44,11 @@ import { getGoogleAuth } from "./google";
  * G  Phone
  * H  Message
  *
- * Featured-City tab columns (A–E) — one row per city holding the Top Spot:
+ * Top-Spots tab columns (A–E) — one row per city holding the Top Spot:
  * A  State   B  City   C  Status ("active")   D  Business Name   E  Timestamp
  */
 
-const FEATURED_TAB = "Featured-City";
+const FEATURED_TAB = "Top-Spots";
 
 async function getSheets() {
   const auth = getGoogleAuth(["https://www.googleapis.com/auth/spreadsheets"]);
@@ -181,7 +181,7 @@ export async function appendLead(
 
   await insertRowAt2(sheets, sheetId, "Applications", tabId, row);
 
-  // Record each Top Spot city in the Featured-City inventory tab (one row per city)
+  // Record each Top Spot city in the Top-Spots inventory tab (one row per city)
   if (topSpotCities.length > 0) {
     const inventoryRows = topSpotCities.map((loc) => [
       loc.state,
