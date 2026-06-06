@@ -31,7 +31,7 @@ const features = [
   {
     icon: TrendingUp,
     heading: "SEO & Long-Term Discoverability",
-    body: "Press placements build high-authority backlinks and lasting search visibility that compounds over time — long after the initial announcement.",
+    body: "Media placements build high-authority backlinks and lasting search visibility that compounds over time — long after the initial announcement.",
   },
 ];
 
@@ -49,7 +49,7 @@ export default function MediaVisibility() {
             </h2>
             <div className="w-12 h-0.5 bg-gold mx-auto mb-5" />
             <p className="text-muted max-w-xl mx-auto text-lg leading-relaxed">
-              Every listing includes a press release distributed across major media
+              Every listing includes a national media announcement distributed across major media
               networks, giving your business national exposure and lasting digital presence.
             </p>
           </div>
