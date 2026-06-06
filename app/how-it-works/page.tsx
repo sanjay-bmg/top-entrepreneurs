@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ClipboardList, Phone, ShieldCheck, Rocket, Award, Check } from "lucide-react";
+import { ClipboardList, Phone, ShieldCheck, Rocket, Award, Check, Star } from "lucide-react";
 import Container from "@/components/Container";
 import Button from "@/components/Button";
 import Faq from "@/components/Faq";
@@ -111,12 +111,19 @@ export default function HowItWorksPage() {
             <h2 className="font-display text-3xl font-bold text-navy mb-4 text-center">
               Pricing
             </h2>
-            <div className="w-12 h-0.5 bg-gold mx-auto mb-10" />
+            <div className="w-12 h-0.5 bg-gold mx-auto mb-5" />
+            <div className="flex justify-center mb-10">
+              <div className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-4 py-1.5 text-xs font-semibold text-gold uppercase tracking-widest">
+                <Star className="h-3.5 w-3.5 fill-gold" />
+                Limited-Time Launch Pricing — 50% Off
+              </div>
+            </div>
 
             <div className="space-y-4">
               {[
                 {
                   label: "Annual listing fee",
+                  was: `${formatCurrency(PRICING.primaryIndustry * 2)}`,
                   price: `${formatCurrency(PRICING.primaryIndustry)} / city`,
                   features: [
                     "Full business profile with photo & description",
@@ -127,6 +134,7 @@ export default function HowItWorksPage() {
                 },
                 {
                   label: "Top Spot (optional)",
+                  was: `${formatCurrency(PRICING.featuredCity * 2)}`,
                   price: `+${formatCurrency(PRICING.featuredCity)} / city`,
                   features: [
                     "The single top spot on your city page — above every other business",
@@ -135,7 +143,7 @@ export default function HowItWorksPage() {
                     "First-come per city — choose any cities you want it in",
                   ],
                 },
-              ].map(({ label, price, features }) => (
+              ].map(({ label, was, price, features }) => (
                 <div
                   key={label}
                   className="rounded-xl border border-cream-dark bg-white p-6"
@@ -145,6 +153,7 @@ export default function HowItWorksPage() {
                       {label}
                     </h3>
                     <span className="font-display text-2xl font-bold text-gold whitespace-nowrap">
+                      <span className="mr-2 text-base font-normal text-muted/50 line-through">{was}</span>
                       {price}
                     </span>
                   </div>
