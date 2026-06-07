@@ -60,6 +60,27 @@ export const siteConfig = {
   // Traffic-source attribution cookie name
   trafficCookie: "te_source",
 
+  // "What Your Listing Looks Like" directory preview (components/DirectoryPreview.tsx)
+  directory: {
+    subtext:
+      "Every listing includes a ranked directory placement, a dedicated profile page, and an optional Top Spot banner. Switch between the views below.",
+    browse: "Austin, TX",
+    filter: "All Categories",
+    cta: "Get Listed",
+    headline: "Find Top Entrepreneurs Near You",
+    listHeading: "Top Businesses in Austin, TX",
+    spotName: "Top Spot",
+    spotScope: "1 per city",
+    servicesLabel: "Categories",
+    teamLabel: "Founders",
+    noun: "business",
+    recognition: "2027 Recognized",
+    launch: "October 2026",
+    toggles: { spotlight: "Top Spot", profile: "Profile", directory: "Directory" },
+    directorySlug: "austin-tx",
+    profileSlug: "verdant-foods-co",
+  },
+
   // Navigation
   nav: [
     { href: "/about", label: "About" },
