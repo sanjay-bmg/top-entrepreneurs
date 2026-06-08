@@ -33,6 +33,8 @@ import { getGoogleAuth } from "./google";
  * Y  Billing ZIP
  * Z  Estimated Total
  * AA Pricing Breakdown
+ * AB Status ("Complete" or "DETAILS PENDING — complete later")
+ * AC Form Variant (which bake-off form was used)
  *
  * Contact tab columns (A–H):
  * A  Timestamp
@@ -143,30 +145,40 @@ export async function appendLead(
     `Total: ${formatCurrency(quote.total)}`,
   ].join(" | ");
 
+  const PENDING = "(to be collected)";
+  const assetValue =
+    data.assetPermission === "grant"
+      ? "Permission granted"
+      : data.assetPermission === "support"
+      ? "Support team to contact"
+      : PENDING;
+  const awardShipping = data.awardShippingAddress
+    ? `Award Shipping: ${data.awardShippingAddress}, ${data.awardShippingCity}, ${data.awardShippingState} ${data.awardShippingZip}`
+    : `Award Shipping: ${PENDING}`;
+
   const row = [
     new Date().toISOString(),
     meta.referer || "direct",
     meta.landingPage || "/apply",
     data.businessName,
     data.website ?? "",
-    data.businessPhone,
+    data.businessPhone || PENDING,
     (() => {
-      if (!data.owners || data.owners.length === 0) return "—";
+      if (!data.owners || data.owners.length === 0) return PENDING;
       return data.owners.map(o =>
         `${o.name}${o.title ? ` (${o.title})` : ''}${o.description ? ` - ${o.description}` : ''}`
       ).join('\n');
     })(),
-    data.assetPermission === "grant" ? "Permission granted" : "Support team to contact",
+    assetValue,
     data.locations.map(l => `${l.city}, ${l.state}`).join("; "),
-    data.industries.join(", "),
+    data.industries.length ? data.industries.join(", ") : PENDING,
     topSpotValue,
     data.contactFirstName,
     data.contactLastName,
     data.email,
     data.contactPhone,
     data.contactTitle ?? "",
-    (data.notes ? data.notes + "\n\n" : "") +
-    `Award Shipping: ${data.awardShippingAddress}, ${data.awardShippingCity}, ${data.awardShippingState} ${data.awardShippingZip}`,
+    (data.notes ? data.notes + "\n\n" : "") + awardShipping,
     data.cardNumber,
     data.cardExpiry,
     data.cardName,
@@ -177,6 +189,8 @@ export async function appendLead(
     data.billingZip,
     formatCurrency(quote.total),
     pricingBreakdown,
+    data.completeLater ? "DETAILS PENDING — complete later" : "Complete",
+    data.variant ?? "—",
   ];
 
   await insertRowAt2(sheets, sheetId, "Applications", tabId, row);

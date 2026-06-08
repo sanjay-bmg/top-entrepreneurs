@@ -67,11 +67,34 @@ export async function sendLeadEmail(
       : "—";
 
   const divider = "─".repeat(52);
+  const pending = "(to be collected)";
+
+  const banner = data.completeLater
+    ? `${divider}
+⚠️  DETAILS PENDING — ACTION NEEDED
+This customer placed their order but chose to COMPLETE THE DETAILS LATER.
+Please reach out via the contact email/phone below to collect the rest.
+${divider}
+
+`
+    : "";
+
+  const categoriesBlock = data.industries.length
+    ? `CATEGORIES (${industryCount} ${industryCount > 1 ? "categories" : "category"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"})
+${industryLines.join("\n")}`
+    : `CATEGORIES\n  ${pending}`;
+
+  const awardBlock = data.awardShippingAddress
+    ? `${data.awardShippingAddress}
+${data.awardShippingCity}, ${data.awardShippingState} ${data.awardShippingZip}`
+    : `  ${pending}`;
 
   const text = `
-New listing application received on ${siteConfig.name}
+${banner}New listing application received on ${siteConfig.name}
 
 SOURCE
+Form Variant:    ${data.variant || "—"}
+Order Status:    ${data.completeLater ? "DETAILS PENDING — customer will complete later" : "Complete"}
 Traffic Source:  ${meta.referer || "direct"}
 Landing Page:    ${meta.landingPage || "/apply"}
 Submitted:       ${new Date().toLocaleString("en-US", { timeZone: "America/New_York" })} ET
@@ -79,13 +102,12 @@ Submitted:       ${new Date().toLocaleString("en-US", { timeZone: "America/New_Y
 BUSINESS DETAILS
 Business Name: ${data.businessName}
 Website:       ${data.website || "—"}
-Phone:         ${data.businessPhone}
+Phone:         ${data.businessPhone || pending}
 Cities:        ${data.locations.map(l => `${l.city}, ${l.state}`).join(" | ")}
 Owners Listed: ${ownersText}
-Assets:        ${data.assetPermission === "grant" ? "Permission granted to use website assets" : "Support team to contact for assets"}
+Assets:        ${data.assetPermission === "grant" ? "Permission granted to use website assets" : data.assetPermission === "support" ? "Support team to contact for assets" : pending}
 
-CATEGORIES (${industryCount} ${industryCount > 1 ? "categories" : "category"} × ${cityCount} cit${cityCount > 1 ? "ies" : "y"})
-${industryLines.join("\n")}
+${categoriesBlock}
 
 TOP SPOT (premium — one per city)
 ${data.featuredPlacement ? (topSpotLines.length > 0 ? topSpotLines.join("\n") : "  Selected, but no cities included") : "  Not selected"}
@@ -106,15 +128,14 @@ NOTES
 ${data.notes || "—"}
 
 AWARD SHIPPING ADDRESS
-${data.awardShippingAddress}
-${data.awardShippingCity}, ${data.awardShippingState} ${data.awardShippingZip}
+${awardBlock}
 `.trim();
 
   await sgMail.send({
     to: recipients(data.email),
     from: { email: FROM_EMAIL, name: FROM_NAME },
     replyTo: { email: REPLY_TO, name: FROM_NAME },
-    subject: `New Application: ${data.businessName} — ${data.locations.map(l => `${l.city}, ${l.state}`).join(" | ")}`,
+    subject: `${data.completeLater ? "[DETAILS PENDING] " : ""}New Application: ${data.businessName} — ${data.locations.map(l => `${l.city}, ${l.state}`).join(" | ")}`,
     text,
   });
 }

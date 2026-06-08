@@ -8,7 +8,14 @@ export const metadata: Metadata = {
   title: `Application Received — ${siteConfig.name}`,
 };
 
-export default function ThanksPage() {
+export default async function ThanksPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ pending?: string }>;
+}) {
+  const { pending } = await searchParams;
+  const isPending = pending === "1";
+
   return (
     <section className="bg-cream min-h-[70vh] flex items-center py-20">
       <Container>
@@ -18,14 +25,24 @@ export default function ThanksPage() {
           </div>
 
           <h1 className="font-display text-4xl font-bold text-navy mb-4">
-            Application Received
+            {isPending ? "Order Received" : "Application Received"}
           </h1>
           <div className="w-12 h-0.5 bg-gold mx-auto mb-6" />
 
           <p className="text-lg text-muted leading-relaxed mb-8">
-            Thank you for applying to {siteConfig.name}. Your listing will go live
-            at the October 2026 directory launch. If we need anything to finalize your
-            listing, we&apos;ll reach out. Questions in the meantime?{" "}
+            {isPending ? (
+              <>
+                Thank you — your order is in. Our team will reach out to the email you
+                provided to finish your listing details. Your listing will go live at the
+                October 2026 directory launch. Want to finish sooner?{" "}
+              </>
+            ) : (
+              <>
+                Thank you for applying to {siteConfig.name}. Your listing will go live
+                at the October 2026 directory launch. If we need anything to finalize your
+                listing, we&apos;ll reach out. Questions in the meantime?{" "}
+              </>
+            )}
             <a href={siteConfig.phoneHref} className="text-gold hover:text-gold-dark underline transition-colors font-medium">
               Give us a call at {siteConfig.phone}.
             </a>

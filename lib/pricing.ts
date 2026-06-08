@@ -23,12 +23,13 @@ export interface Quote {
   total: number;
 }
 
-export function calculateQuote({ industries, cities, featured = false, excludedFeatured = [] }: QuoteInput): Quote {
+export function calculateQuote({ cities, featured = false, excludedFeatured = [] }: QuoteInput): Quote {
   const lineItems: QuoteLineItem[] = [];
-  const industryCount = industries.length;
   const cityCount = Math.max(1, cities.length);
 
-  if (industryCount >= 1) {
+  // The annual listing is priced per city (all categories included), so the
+  // charge is driven by cities — categories can be chosen now or deferred.
+  if (cities.length >= 1) {
     lineItems.push({
       label: `Annual listing × ${cityCount} cit${cityCount > 1 ? "ies" : "y"}`,
       amount: PRICING.primaryIndustry * cityCount,
